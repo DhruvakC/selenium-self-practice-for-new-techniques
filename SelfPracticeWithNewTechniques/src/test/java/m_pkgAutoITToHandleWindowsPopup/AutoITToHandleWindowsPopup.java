@@ -7,6 +7,7 @@ import java.util.Properties;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.Test;
@@ -52,7 +53,15 @@ public class AutoITToHandleWindowsPopup {
 			//System.setProperty("webdriver.gecko.driver", ffDriverLocation);
 			WebDriverManager.firefoxdriver().setup();
 			WebDriver ffdr = new FirefoxDriver();
-			ffdr.get("http://www.tinyupload.com/");
+			//ffdr.get("http://www.tinyupload.com/");
+			ffdr.get("https://tus.io/demo.html");
+			ffdr.manage().window().maximize();
+			Thread.sleep(3000);
+			WebElement elem=ffdr.findElement(By.xpath("//input[@id='js-file-input']"));
+			elem.click();
+			//ffdr.findElement(By.name("uploaded_file")).click();
+			Thread.sleep(3000);
+			Runtime.getRuntime().exec("FileUploadAutoIT.exe");
 			Thread.sleep(3000);
 			ffdr.quit();
 		
